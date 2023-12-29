@@ -17,7 +17,7 @@ class TicketModel(BaseModel):
                 "passenger_email": "john.doe@example.com",
                 "passenger_name": "John Doe",
                 "price": 100,
-                "card_details": "4242424242424242",
+                "card_details": "4242",
                 "ticket_id": "5f4adc0a609a1e2b7d66c6c0"
             }
         }

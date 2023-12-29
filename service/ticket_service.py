@@ -7,6 +7,7 @@ from utils.db_utils import load_db
 db = load_db()
 collection = db["tickets"]
 
+stripe.api_key = "sk_test_51OPsooGpa94GP3zWQItoqSmPaZEiPxrtnFwvUuaPS7pdNhiVzeaRGxsoyx9cDpKnR0xRernroxYoOx2jqxNt510k00ykZnARwE"
 
 async def get_all_tickets():
     tickets = await collection.find().to_list(length=None)
@@ -21,8 +22,23 @@ class TicketService:
     async def purchase_ticket(ticket: TicketModel, authorization: str = Header(...)):
         try:
             ticket_data = ticket.model_dump()
-            # Create a charge using the Stripe API
-            # TODO Add Stripe payment logic
+
+            checkout_session = stripe.checkout.Session.create(
+                payment_method_types=['card'],
+                line_items=[{
+                    'price_data': {
+                        'currency': 'usd',
+                        'product_data': {
+                            'name': 'Flight Ticket',
+                        },
+                        'unit_amount': ticket.price * 100,  # Amount in cents
+                    },
+                    'quantity': 1,
+                }],
+                mode='payment',
+                success_url='https://website.com/success',  # success URL
+                cancel_url='https://website.com/cancel',  # cancel URL
+            )
 
             # If the payment is successful, save ticket details to MongoDB
             result = await collection.insert_one(ticket_data)
