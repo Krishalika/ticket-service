@@ -1,0 +1,50 @@
+name: Ticket Service CI/CD
+
+on:
+  push:
+    branches:
+      - dev
+env:
+    DOCKER_USER_KRISHALIKA: ${{ secrets.DOCKER_USER_KRISHALIKA }}
+    DOCKER_PASSWORD_KRISHALIKA: ${{ secrets.DOCKER_PASSWORD_KRISHALIKA }}
+    RESOURCE_GROUP: ${{ secrets.RESOURCE_GROUP }}
+    CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
+
+jobs:
+    ticket-service-build:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v2
+        - name: Docker login
+          run: | # Login to Dockerhub - KRISHALIKA
+              docker login -u $DOCKER_USER_KRISHALIKA -p $DOCKER_PASSWORD_KRISHALIKA
+        - name: Build Docker
+          run: | # Build Docker image
+              docker build -t krishalika/ticketabc:latest .
+        - name: Push Docker
+          run: | # Push Docker image
+              docker push krishalika/ticketabc:latest    
+
+    ticket-service-deploy:
+        runs-on: ubuntu-latest
+        needs: ticket-service-build  # Specifies dependency
+        if: success()
+        steps:
+        - uses: actions/checkout@v2 # Checkout the code
+        - name: Install Azure CLI
+          run: |
+            sudo apt-get update && sudo apt-get install -y azure-cli
+        - name: Azure Login
+          run: az login --service-principal -u $OIDC_CLIENT_ID -p $OIDC_CLIENT_SECRET --tenant $OIDC_TENANT_ID
+          env:
+            OIDC_CLIENT_ID: ${{ secrets.OIDC_CLIENT_ID }}
+            OIDC_CLIENT_SECRET: ${{ secrets.OIDC_CLIENT_SECRET }}
+            OIDC_TENANT_ID: ${{ secrets.OIDC_TENANT_ID }}
+        - name: Azure AKS
+          run: az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME
+        - name: Deploy to AKS
+          run: | # Apply deployment
+              kubectl apply -f deployments/.
+        - name: Restart pods
+          run: | # Restart pods
+              kubectl rollout restart -n ticketservice deployment/ticketservice

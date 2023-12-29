@@ -7,7 +7,7 @@ class TicketModel(BaseModel):
     passenger_email: str
     passenger_name: str
     price: int
-    card_details: str  # You might want to store only the last four digits for security reasons
+    card_details: str
     ticket_id: Optional[str]
 
     class Config:
