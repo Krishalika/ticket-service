@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e10a117b-d843-4da4-a550-e3b90a26019d" name="Changes" comment="changed docker file">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployments/config-map.yml" beforeDir="false" afterPath="$PROJECT_DIR$/deployments/config-map.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployments/deployment.yml" beforeDir="false" afterPath="$PROJECT_DIR$/deployments/deployment.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployments/service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/deployments/service.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/ticket_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/ticket_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/db_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/db_utils.py" afterDir="false" />
-    </list>
+    <list default="true" id="e10a117b-d843-4da4-a550-e3b90a26019d" name="Changes" comment="changed docker file" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -137,7 +128,7 @@
       <updated>1703446181327</updated>
       <workItem from="1703446185258" duration="3968000" />
       <workItem from="1703496194757" duration="6432000" />
-      <workItem from="1703837036767" duration="9413000" />
+      <workItem from="1703837036767" duration="9983000" />
     </task>
     <task id="LOCAL-00001" summary="initial ticket service">
       <option name="closed" value="true" />
@@ -179,7 +170,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703522235393</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="changed docker file">
+      <option name="closed" value="true" />
+      <created>1703857137706</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1703857137706</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
