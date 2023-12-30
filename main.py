@@ -30,14 +30,6 @@ app = FastAPI(
     },
 )
 
-# CORS middleware to allow all origins
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=["*"],
-#     allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
 if settings.BACKEND_CORS_ORIGINS:
     app.add_middleware(
         CORSMiddleware,
@@ -46,12 +38,6 @@ if settings.BACKEND_CORS_ORIGINS:
         allow_methods=['*'],
         allow_headers=['*'],
     )
-
-# azure_scheme = SingleTenantAzureAuthorizationCodeBearer(
-#     app_client_id=settings.APP_CLIENT_ID,
-#     tenant_id=settings.TENANT_ID,
-#     scopes=settings.SCOPES,
-# )
 
 azure_scheme = MultiTenantAzureAuthorizationCodeBearer(
     app_client_id=settings.APP_CLIENT_ID,
@@ -73,31 +59,6 @@ async def load_config() -> None:
 async def welcome():
     return {"message": "Welcome to Ticket Reservation System"}
 
-app.include_router(ticket_router, prefix="/api/v1", tags=["ticket"])
-# app.include_router(flight_router, prefix="/api/v1", tags=["flight"], dependencies=[Security(azure_scheme)])
-# app.include_router(user_router, prefix="/api/v1", tags=["user"], dependencies=[Security(azure_scheme)])
+app.include_router(ticket_router, prefix="/api/v1", tags=["ticket"], dependencies=[Security(azure_scheme)])
 
 
-
-
-
-
-
-
-# from fastapi import FastAPI
-#
-# from router.ticket_router import ticket_router
-#
-# app = FastAPI()
-#
-#
-# @app.get("/")
-# async def root():
-#     return {"message": "Hello World"}
-#
-#
-# @app.get("/hello/{name}")
-# async def say_hello(name: str):
-#     return {"message": f"Hello {name}"}
-#
-# app.include_router(ticket_router, prefix="/api/v1", tags=["ticket"])
