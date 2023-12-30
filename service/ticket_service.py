@@ -1,9 +1,7 @@
-import os
-
 import stripe
 from dotenv import load_dotenv
-from fastapi import Header
-import dotenv
+from fastapi import Header, HTTPException
+
 from model.ticket_model import TicketModel
 from utils.db_utils import load_db
 
@@ -11,7 +9,8 @@ db = load_db()
 load_dotenv()
 
 collection = db["tickets"]
-stripe.api_key = "sk_test_51OPsooGpa94GP3zWQItoqSmPaZEiPxrtnFwvUuaPS7pdNhiVzeaRGxsoyx9cDpKnR0xRernroxYoOx2jqxNt510k00ykZnARwE"
+stripe.api_key = "pk_test_51OPsooGpa94GP3zWWg0F34h1g2axLfPNPro2f40q1v3KYcgJV1WjXzzqeu6xqkYrZcoKFa6YeijG2nONwgwM70aP00RA6MTv9E"
+
 
 async def get_all_tickets():
     tickets = await collection.find().to_list(length=None)
@@ -25,9 +24,24 @@ class TicketService:
     @staticmethod
     async def purchase_ticket(ticket: TicketModel, authorization: str = Header(...)):
         try:
-            ticket_data = ticket.model_dump()
+            try:
+                card_token = stripe.Token.create(
+                    card={
+                        "number": ticket.card.number,
+                        "exp_month": ticket.card.exp_month,
+                        "exp_year": ticket.card.exp_year,
+                        "cvc": ticket.card.cvc,
+                    },
+                )
+            except Exception as e:
+                error_message = f"Incorrect card details, please try again. Details: {e.args[0]}"
+                return error_message
+            stripe.api_key = "sk_test_51OPsooGpa94GP3zWQItoqSmPaZEiPxrtnFwvUuaPS7pdNhiVzeaRGxsoyx9cDpKnR0xRernroxYoOx2jqxNt510k00ykZnARwE"
 
-            checkout_session = stripe.checkout.Session.create(
+            print("Card token:", card_token)
+
+            # Create a Checkout Session
+            stripe.checkout.Session.create(
                 payment_method_types=['card'],
                 line_items=[{
                     'price_data': {
@@ -45,15 +59,20 @@ class TicketService:
             )
 
             # If the payment is successful, save ticket details to MongoDB
+            ticket_data = ticket.dict()
+            ticket_data.pop('card', None)
             result = await collection.insert_one(ticket_data)
             ticket.ticket_id = str(result.inserted_id)
 
             # Return a success response
-            return {"status": "success", "message": "Purchase successful", "ticket": ticket.model_dump()}
+            return {"status": "success", "message": "Purchase successful"}
 
         except stripe.error.CardError as e:
             # Handle specific Stripe errors
-            return {"status": "error", "message": str(e)}
+            raise HTTPException(status_code=400, detail={"status": "error", "message": str(e)})
         except stripe.error.StripeError as e:
+            # return e
             # Handle generic Stripe errors
-            return {"status": "error", "message": "Something went wrong. Please try again later."}
+            raise HTTPException(status_code=500,
+                                detail={"status": "error",
+                                        "message": "Something went wrong. Please try again later." + str(e)})

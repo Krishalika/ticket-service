@@ -15,7 +15,7 @@ async def purchase_ticket(ticket: TicketModel):
         return result
     except Exception as e:
         # Handle specific exceptions if needed
-        raise HTTPException(status_code=500, detail="Internal Server Error")
+        raise HTTPException(status_code=500, detail="Error occurred, please try again \n")
 
 
 @ticket_router.get("/ticket/all")
