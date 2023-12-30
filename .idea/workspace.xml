@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e10a117b-d843-4da4-a550-e3b90a26019d" name="Changes" comment="changed docker file">
+    <list default="true" id="e10a117b-d843-4da4-a550-e3b90a26019d" name="Changes" comment="added stripe logic">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/ticket_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/ticket_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployments/deployment.yml" beforeDir="false" afterPath="$PROJECT_DIR$/deployments/deployment.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/ticket_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/service/ticket_service.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -132,7 +134,7 @@
       <updated>1703446181327</updated>
       <workItem from="1703446185258" duration="3968000" />
       <workItem from="1703496194757" duration="6432000" />
-      <workItem from="1703837036767" duration="14983000" />
+      <workItem from="1703837036767" duration="16527000" />
     </task>
     <task id="LOCAL-00001" summary="initial ticket service">
       <option name="closed" value="true" />
@@ -190,7 +192,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703857601335</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added stripe logic">
+      <option name="closed" value="true" />
+      <created>1703887761716</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1703887761716</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,20 +211,21 @@
     <MESSAGE value="docker and deployment empty files" />
     <MESSAGE value="added docker file" />
     <MESSAGE value="changed docker file" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed docker file" />
+    <MESSAGE value="added stripe logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="added stripe logic" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/service/ticket_service.py</url>
-          <line>23</line>
+          <line>27</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ticketservice$ticketservice.coverage" NAME="ticketservice Coverage Results" MODIFIED="1703887419596" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/ticketservice$ticketservice.coverage" NAME="ticketservice Coverage Results" MODIFIED="1703925103121" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

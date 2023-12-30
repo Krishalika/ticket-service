@@ -1,13 +1,16 @@
-import stripe
-from fastapi import Header
+import os
 
+import stripe
+from dotenv import load_dotenv
+from fastapi import Header
+import dotenv
 from model.ticket_model import TicketModel
 from utils.db_utils import load_db
 
 db = load_db()
-collection = db["tickets"]
+load_dotenv()
 
-stripe.api_key = "sk_test_51OPsooGpa94GP3zWQItoqSmPaZEiPxrtnFwvUuaPS7pdNhiVzeaRGxsoyx9cDpKnR0xRernroxYoOx2jqxNt510k00ykZnARwE"
+collection = db["tickets"]
 
 async def get_all_tickets():
     tickets = await collection.find().to_list(length=None)
@@ -21,6 +24,7 @@ class TicketService:
     @staticmethod
     async def purchase_ticket(ticket: TicketModel, authorization: str = Header(...)):
         try:
+            stripe.api_key = os.getenv("STRIPE_API_KEY")
             ticket_data = ticket.model_dump()
 
             checkout_session = stripe.checkout.Session.create(

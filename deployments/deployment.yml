@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: ticketservice
-        image: docker.io/krishalika/tickets:latest
+        image: docker.io/krishalika/ticketabc:latest
         ports:  # port mapping
         - containerPort: 8000 # port number of the container
         envFrom: # environment variables from ConfigMap
