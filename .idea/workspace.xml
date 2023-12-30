@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e10a117b-d843-4da4-a550-e3b90a26019d" name="Changes" comment="added stripe logic">
+    <list default="true" id="e10a117b-d843-4da4-a550-e3b90a26019d" name="Changes" comment="changed deployment file">
       <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployments/deployment.yml" beforeDir="false" afterPath="$PROJECT_DIR$/deployments/deployment.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/ticket_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/service/ticket_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +133,7 @@
       <updated>1703446181327</updated>
       <workItem from="1703446185258" duration="3968000" />
       <workItem from="1703496194757" duration="6432000" />
-      <workItem from="1703837036767" duration="16527000" />
+      <workItem from="1703837036767" duration="17749000" />
     </task>
     <task id="LOCAL-00001" summary="initial ticket service">
       <option name="closed" value="true" />
@@ -200,7 +199,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703887761716</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="changed deployment file">
+      <option name="closed" value="true" />
+      <created>1703925525525</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1703925525525</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,7 +219,8 @@
     <MESSAGE value="added docker file" />
     <MESSAGE value="changed docker file" />
     <MESSAGE value="added stripe logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="added stripe logic" />
+    <MESSAGE value="changed deployment file" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed deployment file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
