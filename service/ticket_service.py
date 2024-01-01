@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from fastapi import Header, HTTPException
 
 from model.ticket_model import TicketModel
-from utils.db_utils import load_db
+from utils.utils import load_db
 
 db = load_db()
 load_dotenv()
